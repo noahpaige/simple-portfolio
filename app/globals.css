@@ -1,2 +1,9 @@
 :root {
+  --bg-color: #020617;
+  --text-color: #eefff5;
+
+  --text-primary: rgba(from var(--text-color) r g b / 0.9);
+  --text-secondary: rgba(from var(--text-color) r g b / 0.75);
+
+  background: var(--bg-color);
 }
