@@ -19,7 +19,7 @@ export default function Home() {
     <main>
       <div>
         <MyHeader>hey, it's noah's website.</MyHeader>
-        <MyBody>work in progress</MyBody>
+        <MyBody>testing GitHub Actions with deploy to GH Pages</MyBody>
       </div>
     </main>
   );
