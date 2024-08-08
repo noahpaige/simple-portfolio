@@ -19,7 +19,7 @@ export default function Home() {
     <main>
       <div>
         <MyHeader>hey, it's noah's website.</MyHeader>
-        <MyBody>how's it going?</MyBody>
+        <MyBody>work in progress</MyBody>
       </div>
     </main>
   );
