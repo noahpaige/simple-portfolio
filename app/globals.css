@@ -7,3 +7,7 @@
 
   background: var(--bg-color);
 }
+
+body {
+  margin: 0;
+}
