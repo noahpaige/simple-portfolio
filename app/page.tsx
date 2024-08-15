@@ -16,6 +16,12 @@ const SnapContainer = styled.div`
   margin: 0;
   height: 100vh;
   scroll-behavior: smooth;
+  background: var(--bg-color);
+  background: linear-gradient(
+    135deg,
+    rgb(117, 149, 119) -30%,
+    rgb(1, 18, 38) 78%
+  );
 `;
 
 export default function Home() {
