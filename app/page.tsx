@@ -24,27 +24,30 @@ const sections = [
     colors: {
       a: "#759577",
       b: "#011226",
+      aStop: -100,
+      bStop: 75,
       deg: 135,
     },
-    gradient: "linear-gradient(135deg, #759577 -100%, #011226 75%)",
   },
   {
     Comp: About,
     colors: {
-      a: "#011226",
-      b: "#553322",
+      a: "#759577",
+      b: "#011226",
+      aStop: -100,
+      bStop: 75,
       deg: 45,
     },
-    gradient: "linear-gradient(135deg, #757795 -100%, #012612 75%)",
   },
   {
     Comp: Projects,
     colors: {
-      a: "#553322",
-      b: "#991226",
-      deg: 225,
+      a: "#759577",
+      b: "#011226",
+      aStop: -100,
+      bStop: 75,
+      deg: 135,
     },
-    gradient: "linear-gradient(135deg, #229577 -100%, #991226 75%)",
   },
 ];
 
@@ -63,10 +66,12 @@ export default function Home() {
   const snapContainer = useRef(null);
   const { scrollY } = useScroll({ container: snapContainer });
   let prev = scrollY.get();
-  let colorA = useMotionValue(sections[0].colors.a);
-  let colorB = useMotionValue(sections[0].colors.b);
-  let deg = useMotionValue(sections[0].colors.deg);
-  const bgColor = useMotionTemplate`linear-gradient(${deg}deg, ${colorA} -100%, ${colorB} 75%)`;
+  const colorA = useMotionValue(sections[0].colors.a);
+  const colorB = useMotionValue(sections[0].colors.b);
+  const aStop = useMotionValue(sections[0].colors.aStop);
+  const bStop = useMotionValue(sections[0].colors.bStop);
+  const deg = useMotionValue(sections[0].colors.deg);
+  const bgColor = useMotionTemplate`linear-gradient(${deg}deg, ${colorA} ${aStop}%, ${colorB} ${bStop}%)`;
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const height = (snapContainer?.current as unknown as HTMLDivElement)
@@ -100,6 +105,21 @@ export default function Home() {
     );
     colorB.set(
       useLerpHex(sections[prevPage].colors.b, sections[nextPage].colors.b, i)
+    );
+
+    aStop.set(
+      useLerp(
+        sections[prevPage].colors.aStop,
+        sections[nextPage].colors.aStop,
+        i
+      )
+    );
+    bStop.set(
+      useLerp(
+        sections[prevPage].colors.bStop,
+        sections[nextPage].colors.bStop,
+        i
+      )
     );
 
     deg.set(
