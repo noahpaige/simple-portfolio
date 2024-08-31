@@ -3,16 +3,9 @@
 import React from "react";
 import styled from "styled-components";
 import Markdown from "../shared/Markdown";
+import { SectionContainer, MyCard, H1 } from "../../sharedStyles";
 
-const AboutContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TLDRCard = styled.div`
+const TLDRCard = styled(MyCard)`
   width: 100%;
   max-width: 800px;
   margin-left: 2rem;
@@ -21,12 +14,6 @@ const TLDRCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const MyHeader = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: var(--text-primary);
 `;
 
 const TLDRList = styled.div`
@@ -79,9 +66,9 @@ const content = [
 
 export default function About() {
   return (
-    <AboutContainer>
-      <TLDRCard className="my-card-bg">
-        <MyHeader>TL;DR</MyHeader>
+    <SectionContainer>
+      <TLDRCard>
+        <H1>TL;DR</H1>
         <TLDRList>
           {content.map((item, i) => {
             return (
@@ -94,6 +81,6 @@ export default function About() {
           })}
         </TLDRList>
       </TLDRCard>
-    </AboutContainer>
+    </SectionContainer>
   );
 }
