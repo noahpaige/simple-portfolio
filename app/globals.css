@@ -4,6 +4,9 @@
 
   --color-primary: #1bad53;
 
+  --color-abberation-1: #2496d0;
+  --color-abberation-2: #d43451;
+
   --text-primary: rgba(from var(--text-color) r g b / 0.9);
   --text-secondary: rgba(from var(--text-color) r g b / 0.75);
 
