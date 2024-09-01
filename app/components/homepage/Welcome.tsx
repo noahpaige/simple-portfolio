@@ -1,12 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-
-const MyHeader = styled.h1`
-  font-size: 4.5rem;
-  text-align: center;
-  color: var(--text-primary);
-`;
+import ChromaticText from "../shared/ChomaticText";
 
 const MyBody = styled.p`
   font-size: 1rem;
@@ -23,10 +18,19 @@ const WelcomeContainer = styled.div`
   height: 100%;
 `;
 
+const name = "Noah Paige";
+
 export default function Welcome() {
   return (
     <WelcomeContainer>
-      <MyHeader>Noah Paige</MyHeader>
+      <ChromaticText
+        text={name}
+        fontSize="6rem"
+        scale={1.075}
+        offset={{ initial: 3, hovered: 5 }}
+        weight={700}
+        blur={{ initial: 1, hovered: 2 }}
+      />
       <MyBody>Welcome!</MyBody>
     </WelcomeContainer>
   );
