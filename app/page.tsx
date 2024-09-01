@@ -8,24 +8,16 @@ import Welcome from "./components/homepage/Welcome";
 import About from "./components/homepage/About";
 import Projects from "./components/homepage/Projects";
 import HomeSection from "./components/shared/HomeSection";
+import BottomNav from "./components/shared/BottomNav";
 
 import { useGradientBackground } from "./hooks/useGradientBackground";
+import Contact from "./components/homepage/Contact";
 
 const sections = [
   {
     Comp: Welcome,
     colors: {
-      a: "#759577",
-      b: "#011226",
-      aStop: -100,
-      bStop: 75,
-      deg: 135,
-    },
-  },
-  {
-    Comp: About,
-    colors: {
-      a: "#759577",
+      a: "#2496d0",
       b: "#011226",
       aStop: -100,
       bStop: 75,
@@ -33,13 +25,33 @@ const sections = [
     },
   },
   {
-    Comp: Projects,
+    Comp: About,
     colors: {
-      a: "#759577",
+      a: "#d43451",
       b: "#011226",
       aStop: -100,
       bStop: 75,
       deg: 135,
+    },
+  },
+  {
+    Comp: Projects,
+    colors: {
+      a: "#2496d0",
+      b: "#011226",
+      aStop: -100,
+      bStop: 75,
+      deg: 225,
+    },
+  },
+  {
+    Comp: Contact,
+    colors: {
+      a: "#d43451",
+      b: "#011226",
+      aStop: -100,
+      bStop: 75,
+      deg: 315,
     },
   },
 ];
@@ -70,6 +82,7 @@ export default function Home() {
           );
         })}
       </SnapContainer>
+      <BottomNav options={sections.map((section) => section.Comp.name)} />
     </main>
   );
 }
