@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
@@ -73,33 +73,43 @@ export default function Home() {
   const snapContainer = useRef(null);
   const bgColor = useGradientBackground(sections, snapContainer);
 
+  const scrollToSection = (sectionName: string) => {
+    const sectionIndex = sections.findIndex(
+      (section) => section.Comp.name === sectionName
+    );
+    if (sectionIndex === -1) return;
+    const sectionElement = (snapContainer.current as unknown as HTMLElement)
+      ?.children[sectionIndex];
+    sectionElement.scrollIntoView({ behavior: "smooth" });
+  };
+
   useEffect(() => {
     // This will be called whenever the query parameters change
     const selectedSection = searchParams.get("section");
     console.log("Query parameters changed:", selectedSection);
 
-    const sectionIndex = sections.findIndex(
-      (section) => section.Comp.name === selectedSection
-    );
-    if (sectionIndex !== -1) {
-      const sectionElement = (snapContainer.current as unknown as HTMLElement)
-        ?.children[sectionIndex];
-      sectionElement.scrollIntoView({ behavior: "smooth" });
+    try {
+      scrollToSection(selectedSection + "");
+    } catch (err) {
+      console.log("errored");
+      window.setTimeout(() => scrollToSection(selectedSection + ""), 500);
     }
   }, [searchParams]);
 
   return (
-    <main>
-      <SnapContainer ref={snapContainer} style={{ background: bgColor }}>
-        {sections.map((section, i) => {
-          return (
-            <HomeSection key={i}>
-              <section.Comp />
-            </HomeSection>
-          );
-        })}
-      </SnapContainer>
-      <BottomNav options={sections.map((section) => section.Comp.name)} />
-    </main>
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <main>
+        <SnapContainer ref={snapContainer} style={{ background: bgColor }}>
+          {sections.map((section, i) => {
+            return (
+              <HomeSection key={i}>
+                <section.Comp />
+              </HomeSection>
+            );
+          })}
+        </SnapContainer>
+        <BottomNav options={sections.map((section) => section.Comp.name)} />
+      </main>
+    </Suspense>
   );
 }

@@ -4,8 +4,7 @@ import {
   useMotionTemplate,
   useMotionValueEvent,
 } from "framer-motion";
-import { useLerpHex } from "./useLerpHex";
-import { useLerp } from "./useLerp";
+import { lerp, lerpHex } from "../helpers";
 
 export const useGradientBackground = (sections: any[], snapContainer: any) => {
   const { scrollY } = useScroll({ container: snapContainer });
@@ -42,29 +41,21 @@ export const useGradientBackground = (sections: any[], snapContainer: any) => {
     );
 
     colorA.set(
-      useLerpHex(sections[prevPage].colors.a, sections[nextPage].colors.a, i)
+      lerpHex(sections[prevPage].colors.a, sections[nextPage].colors.a, i)
     );
     colorB.set(
-      useLerpHex(sections[prevPage].colors.b, sections[nextPage].colors.b, i)
+      lerpHex(sections[prevPage].colors.b, sections[nextPage].colors.b, i)
     );
 
     aStop.set(
-      useLerp(
-        sections[prevPage].colors.aStop,
-        sections[nextPage].colors.aStop,
-        i
-      )
+      lerp(sections[prevPage].colors.aStop, sections[nextPage].colors.aStop, i)
     );
     bStop.set(
-      useLerp(
-        sections[prevPage].colors.bStop,
-        sections[nextPage].colors.bStop,
-        i
-      )
+      lerp(sections[prevPage].colors.bStop, sections[nextPage].colors.bStop, i)
     );
 
     deg.set(
-      useLerp(sections[prevPage].colors.deg, sections[nextPage].colors.deg, i)
+      lerp(sections[prevPage].colors.deg, sections[nextPage].colors.deg, i)
     );
 
     prev = latest;
