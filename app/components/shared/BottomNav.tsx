@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "styled-components";
+import { styled } from "styled-components";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 
@@ -43,6 +43,7 @@ export default function BottomNav({ options }: Props) {
   const searchParams = useSearchParams();
 
   const handleClick = (option: string) => {
+    console.log("clicked", option);
     const params = new URLSearchParams(searchParams.toString());
     params.set("section", option);
     window.history.pushState(null, "", `?${params.toString()}`);

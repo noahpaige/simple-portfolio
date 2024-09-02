@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "styled-components";
+import { styled } from "styled-components";
 import ChromaticText from "../shared/ChomaticText";
 
 const WelcomeContainer = styled.div`
@@ -51,14 +51,7 @@ export default function Contact() {
     <WelcomeContainer>
       {items.map((item, index) => (
         <Button key={index} onClick={() => window.open(item.link, "_blank")}>
-          <ChromaticText
-            text={item.text}
-            fontSize={"3rem"}
-            weight={700}
-            scale={1.2}
-            offset={{ initial: 2, hovered: 3 }}
-            blur={{ initial: 1, hovered: 2 }}
-          />
+          {item.text}
         </Button>
       ))}
     </WelcomeContainer>

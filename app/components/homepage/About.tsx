@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 import Markdown from "../shared/Markdown";
 import { SectionContainer, MyCard, H1 } from "../../sharedStyles";
 

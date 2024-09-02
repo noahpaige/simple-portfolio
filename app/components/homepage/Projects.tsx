@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "styled-components";
+import { styled } from "styled-components";
 import { SectionContainer, MyCard, H1 } from "../../sharedStyles";
 import { projectData } from "../../project-data";
 import Markdown from "../shared/Markdown";

@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
 const Section = styled.div`
   width: 100%;
