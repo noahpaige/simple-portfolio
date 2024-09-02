@@ -1,17 +1,18 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
 import Welcome from "./components/homepage/Welcome";
 import About from "./components/homepage/About";
 import Projects from "./components/homepage/Projects";
+import Contact from "./components/homepage/Contact";
 import HomeSection from "./components/shared/HomeSection";
 import BottomNav from "./components/shared/BottomNav";
 
 import { useGradientBackground } from "./hooks/useGradientBackground";
-import Contact from "./components/homepage/Contact";
 
 const sections = [
   {
@@ -68,16 +69,32 @@ const SnapContainer = styled(motion.div)`
 `;
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const snapContainer = useRef(null);
   const bgColor = useGradientBackground(sections, snapContainer);
+
+  useEffect(() => {
+    // This will be called whenever the query parameters change
+    const selectedSection = searchParams.get("section");
+    console.log("Query parameters changed:", selectedSection);
+
+    const sectionIndex = sections.findIndex(
+      (section) => section.Comp.name === selectedSection
+    );
+    if (sectionIndex !== -1) {
+      const sectionElement = (snapContainer.current as unknown as HTMLElement)
+        ?.children[sectionIndex];
+      sectionElement.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [searchParams]);
+
   return (
     <main>
       <SnapContainer ref={snapContainer} style={{ background: bgColor }}>
         {sections.map((section, i) => {
-          const { Comp } = section;
           return (
             <HomeSection key={i}>
-              <Comp />
+              <section.Comp />
             </HomeSection>
           );
         })}
