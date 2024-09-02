@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { styled } from "styled-components";
+import { media } from "@/app/sharedStyles";
 
 const Container = styled.div`
   width: 100%;
@@ -12,13 +13,22 @@ const Container = styled.div`
 `;
 
 const CharContainer = styled(motion.div)<{
-  fontSize?: string;
+  fontdefault: string;
+  fontsm: string;
+  fontmd: string;
   weight?: number;
 }>`
   position: relative;
-  font-size: ${(props) => props.fontSize || "1rem"};
+  font-size: ${(props) => props.fontdefault};
   font-weight: ${(props) => props.weight || 400};
   cursor: default;
+
+  @media screen and ${media.lessThan.md} {
+    font-size: ${(props) => props.fontmd};
+  }
+  @media screen and ${media.lessThan.sm} {
+    font-size: ${(props) => props.fontsm};
+  }
 `;
 
 const Char1 = styled(motion.div)`
@@ -51,7 +61,11 @@ const CharContainerInner = styled.div`
 
 interface ChromaticTextProps {
   text: string;
-  fontSize: string;
+  myFontSizes: {
+    default: string;
+    md: string;
+    sm: string;
+  };
   weight: number;
   scale: number;
   offset: {
@@ -66,7 +80,7 @@ interface ChromaticTextProps {
 
 export default function ChromaticText({
   text,
-  fontSize,
+  myFontSizes,
   weight,
   scale,
   offset,
@@ -94,7 +108,9 @@ export default function ChromaticText({
       {chars.map((item, index) => (
         <CharContainer
           key={index}
-          fontSize={fontSize}
+          fontdefault={myFontSizes.default}
+          fontmd={myFontSizes.md}
+          fontsm={myFontSizes.sm}
           weight={weight}
           onHoverStart={() => setHovered(index, true)}
           onHoverEnd={() => setHovered(index, false)}

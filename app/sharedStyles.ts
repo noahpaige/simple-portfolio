@@ -33,3 +33,10 @@ export const H3 = styled.h1`
   text-align: center;
   color: var(--text-secondary);
 `;
+
+export const media = {
+  lessThan: {
+    md: "(max-width: 768px)",
+    sm: "(max-width: 480px)",
+  },
+};

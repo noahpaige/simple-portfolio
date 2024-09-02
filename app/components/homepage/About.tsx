@@ -3,7 +3,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import Markdown from "../shared/Markdown";
-import { SectionContainer, MyCard, H1 } from "../../sharedStyles";
+import { SectionContainer, MyCard, H1, media } from "../../sharedStyles";
 
 const TLDRCard = styled(MyCard)`
   width: 100%;
@@ -23,6 +23,14 @@ const TLDRList = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 800px;
+
+  @media screen and ${media.lessThan.md} {
+    font-size: 1.25rem;
+  }
+
+  @media screen and ${media.lessThan.sm} {
+    font-size: 1rem;
+  }
 `;
 
 const TLDRItem = styled.div`

@@ -3,6 +3,7 @@
 import { styled } from "styled-components";
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
+import { media } from "@/app/sharedStyles";
 
 interface Props {
   options: string[];
@@ -26,18 +27,34 @@ const NavInner = styled.div`
   justify-content: space-around;
   gap: 1rem;
   padding: 1rem;
+
+  @media screen and ${media.lessThan.md} {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  @media screen and ${media.lessThan.sm} {
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
 `;
 
 const NavButton = styled(motion.button)`
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   border: none;
   font-size: 1rem;
   font-weight: 100;
-  height: 3rem;
   border-radius: 0.5rem;
   cursor: pointer;
   background: transparent;
   color: var(--text-secondary);
+
+  @media screen and ${media.lessThan.md} {
+    font-size: 0.75rem;
+  }
+
+  @media screen and ${media.lessThan.sm} {
+  }
 `;
 export default function BottomNav({ options }: Props) {
   const searchParams = useSearchParams();

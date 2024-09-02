@@ -15,7 +15,6 @@ const WelcomeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  display: flex;
   height: 100%;
 `;
 
@@ -27,7 +26,7 @@ export default function Welcome() {
       <NoSSR>
         <ChromaticText
           text={name}
-          fontSize="6rem"
+          myFontSizes={{ default: "6rem", md: "4.5rem", sm: "3rem" }}
           scale={1.075}
           offset={{ initial: 3, hovered: 5 }}
           weight={700}
